@@ -1,11 +1,89 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
+// OPCIÓN 1A: Importamos los iconos desde cada uno de los archivos
+import { IconFile as IconFileSeparated } from "~/components/icons/icon-file";
+import { IconMusic as IconMusicSeparated } from "~/components/icons/icon-music";
+import { IconUser as IconUserSeparated } from "~/components/icons/icon-user";
+
+// Option 1B: Importamos los iconos desde un archivo que los importa y los exporta
+import { IconFile, IconMusic, IconUser } from "~/components/icons/";
+import { IconManager } from "~/components/icons/icon-manager";
+
+// Option 2: Importamos los iconos desde un único archivo.
+
 export default component$(() => {
   return (
-    <>
-      <h1>Icons Manager</h1>
-    </>
+    <div class="app">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: "20px",
+        }}
+      >
+        <h1>Icons Manager</h1>
+        <a
+          class="btn"
+          target="_blank"
+          rel="nofollow noopener"
+          href="https://github.com/manuelsanchezweb/icons-manager"
+        >
+          Ver repo
+        </a>
+      </div>
+
+      <p>Tenemos tres opciones:</p>
+      <ol>
+        <li>
+          <p>
+            Tenemos archivos separados por cada Icon, y hacemos un import desde
+            ahí. <strong>Mayor desventaja</strong> : mucho código importado.
+          </p>
+          <div>
+            <IconFileSeparated />
+            <IconMusicSeparated />
+            <IconUserSeparated />
+          </div>
+          <p>
+            Esto se puede solucionar si tenemos un archivo que importe todos los
+            iconos y los exporte.
+          </p>
+          <div>
+            <IconUser />
+            <IconMusic />
+            <IconFile />
+          </div>
+        </li>
+        <li>
+          Tenemos todos los icons en un archivo único. Esto funciona genial
+          cuando tenemos pocos icons, como es este caso, pero cuando se empieza
+          a tener muchos, se vuelve un archivo muy grande y difícil de leer.
+        </li>
+        <li>
+          Tenemos un archivo que se encarga de hacer un handle de los iconos, y
+          entonces nos quitamos todos los imports de este file. Échale un
+          vistazo en mi código al archivo <code>icon-manager.tsx</code>
+        </li>
+        <div>
+          <IconManager icon="user" />
+          <IconManager icon="music" />
+          <IconManager icon="file" />
+        </div>
+      </ol>
+
+      <p>
+        Todos los icons son de{" "}
+        <a
+          target="_blank"
+          rel="noopener nofollow"
+          href="https://www.bee-icons.com/"
+        >
+          bee-icons
+        </a>
+        .
+      </p>
+    </div>
   );
 });
 
