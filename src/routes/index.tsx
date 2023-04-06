@@ -7,10 +7,17 @@ import { IconMusic as IconMusicSeparated } from "~/components/icons/icon-music";
 import { IconUser as IconUserSeparated } from "~/components/icons/icon-user";
 
 // Option 1B: Importamos los iconos desde un archivo que los importa y los exporta
-import { IconFile, IconMusic, IconUser } from "~/components/icons/";
-import { IconManager } from "~/components/icons/icon-manager";
+import {
+  IconFile as IconFileIndex,
+  IconMusic as IconMusicIndex,
+  IconUser as IconUserIndex,
+} from "~/components/icons/";
 
 // Option 2: Importamos los iconos desde un único archivo.
+import { IconFile, IconMusic, IconUser } from "~/components/icons/icons-group";
+
+// Option 3: Importamos el icon manager, y le pasamos el nombre del icono que queremos renderizar
+import { IconManager } from "~/components/icons/icon-manager";
 
 export default component$(() => {
   return (
@@ -50,15 +57,20 @@ export default component$(() => {
             iconos y los exporte.
           </p>
           <div>
-            <IconUser />
-            <IconMusic />
-            <IconFile />
+            <IconFileIndex />
+            <IconMusicIndex />
+            <IconUserIndex />
           </div>
         </li>
         <li>
           Tenemos todos los icons en un archivo único. Esto funciona genial
           cuando tenemos pocos icons, como es este caso, pero cuando se empieza
           a tener muchos, se vuelve un archivo muy grande y difícil de leer.
+          <div>
+            <IconFile />
+            <IconMusic />
+            <IconUser />
+          </div>
         </li>
         <li>
           Tenemos un archivo que se encarga de hacer un handle de los iconos, y
@@ -66,9 +78,9 @@ export default component$(() => {
           vistazo en mi código al archivo <code>icon-manager.tsx</code>
         </li>
         <div>
-          <IconManager icon="user" />
-          <IconManager icon="music" />
           <IconManager icon="file" />
+          <IconManager icon="music" />
+          <IconManager icon="user" />
         </div>
       </ol>
 
